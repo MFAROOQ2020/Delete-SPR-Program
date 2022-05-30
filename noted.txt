@@ -1,0 +1,33 @@
+1-> Specfice user id jis ne banai hai wo he delete kere ga.
+2-> admin delete all user SRP.
+3-> New SRP and Rejected SPR only deleted.
+4-> Oracle Admin only delete the status 'Pending for approval SPR'. 
+
+------------------------------------------------------------------------------
+
+1->DEPA Deletion procedure SPR
+
+http://orasupapp01.depa.ae:8001/
+-------------------------------------------------------------------------------
+
+DEPA Deletion procedure SPR
+
+xx_request_id_vs
+
+
+DELETE SUPPLIER PAYMENT REQUEST
+
+Delete Supplier Payment Request
+
+user name :11489
+user id   :9122
+
+------------------------------------------
+
+select distinct x.document_name, x.adv_request_id, x.org_id,x.approval_status
+  from xxap_advance_request x--,fnd_user u
+where 1=1
+--and x.created_by=9122--u.user_id
+and approval_status in
+(Case When x.created_by=9122--14206 
+then 'New' end)
